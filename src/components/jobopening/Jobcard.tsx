@@ -24,16 +24,27 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
 
   return (
     <article className="rounded-2xl bg-[#06060608] font-manrope shadow-xl ring-1 ring-gray-100 p-5 md:p-6">
-      <div className="flex flex-col md:flex-row md:items-start gap-6">
+      {/* This is the main flex container. 'md:items-stretch' is crucial here 
+        to make sure child items (image container and details container) 
+        stretch to the height of the tallest sibling (the details).
+      */}
+      <div className="flex flex-col md:flex-row md:items-stretch gap-6">
 
-        {/* LEFT SIDE: Job Image - No shadow, fixed width on md screens */}
-        <div className="md:w-48 md:flex-shrink-0 w-full"> {/* Adjusted width to md:w-48, removed shadow */}
-          <div className="relative w-full aspect-square rounded-xl overflow-hidden"> {/* Removed shadow-lg from here */}
+        {/* LEFT SIDE: Job Image
+          - md:w-48: Sets the fixed width for the image container.
+          - md:flex-shrink-0: Prevents the image from shrinking.
+          - h-full: Makes the container take the full height of the parent flex item.
+        */}
+        <div className="md:w-48 md:flex-shrink-0 w-full h-full"> 
+          <div className="relative w-full h-full rounded-xl overflow-hidden">
+            {/* h-full is used here instead of aspect-square 
+              to make the image container stretch vertically.
+            */}
             <Image
               src={job.image}
               alt={`${job.role} graphic`}
               layout="fill"
-              objectFit="cover"
+              objectFit="cover" // Use 'cover' to fill the container without distortion
               className="hover:scale-105 transition-transform duration-300"
             />
           </div>
