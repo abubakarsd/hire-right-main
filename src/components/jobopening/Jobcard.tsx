@@ -6,18 +6,15 @@ import type { Job } from "@/data/jobs";
 
 type Props = {
   job: Job;
-  /** Optional: when provided by parent, the card is controlled */
   isOpen?: boolean;
   onToggle?: () => void;
 };
 
 const JobCard = ({ job, isOpen, onToggle }: Props) => {
-  // fallback local state if parent doesn't control it
   const [internalOpen, setInternalOpen] = useState(false);
   const open = isOpen ?? internalOpen;
   const toggle = onToggle ?? (() => setInternalOpen((v) => !v));
 
-  // use requirements if present, otherwise fall back to duties to avoid crashes
   const reqs =
     "requirements" in job && Array.isArray(job.requirements)
       ? job.requirements
@@ -26,19 +23,17 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
   return (
     <article className="rounded-2xl bg-[#06060608] font-manrope shadow-xl ring-1 ring-gray-100 p-5 md:p-6">
       <div className="flex flex-col md:flex-row md:items-stretch gap-6">
-        {/* LEFT SIDE: Job Image - Full height cover */}
-        <div className="md:w-64 md:h-full md:flex-shrink-0 w-full">
-          <div className="relative w-full h-full rounded-xl overflow-hidden">
-            <Image
-              src={job.image}
-              alt={`${job.role} graphic`}
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
+        {/* ✅ LEFT SIDE: Job Image - fixed height on small screens, full cover on desktop */}
+        <div className="md:w-64 md:h-auto md:flex-shrink-0 w-full h-48 relative rounded-xl overflow-hidden">
+          <Image
+            src={job.image}
+            alt={`${job.role} graphic`}
+            fill
+            className="object-cover hover:scale-105 transition-transform duration-300"
+          />
         </div>
 
-        {/* RIGHT SIDE: Job Details - Fills remaining space */}
+        {/* RIGHT SIDE: Job Details */}
         <div className="flex-grow">
           {/* Role + Apply */}
           <div className="flex items-start justify-between gap-3 mt-[20px] font-manrope">
@@ -78,9 +73,7 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
 
           {/* Salary */}
           <div className="mt-2 text-[14px] text-[#060606] font-[500] font-manrope">
-            <span className="font-[500] text-[16px] text-[#003780] font-manrope">
-              Salary:{" "}
-            </span>
+            <span className="font-[500] text-[16px] text-[#003780] font-manrope">Salary: </span>
             {job.salary}
           </div>
 
@@ -108,18 +101,14 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
             </button>
           </div>
 
-          {/* Collapsible (smooth) */}
+          {/* Collapsible */}
           <div
             className={`transition-[grid-template-rows,opacity,margin] duration-300 ease-in-out grid ${
-              open
-                ? "grid-rows-[1fr] opacity-100 mt-4"
-                : "grid-rows-[0fr] opacity-0"
+              open ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
             }`}
           >
             <div className="overflow-hidden bg-[#003780] rounded-3xl shadow-2xl p-4 text-white font-manrope">
-              <div className="font-semibold text-orange-300 mb-2 text-lg">
-                Requirements:
-              </div>
+              <div className="font-semibold text-orange-300 mb-2 text-lg">Requirements:</div>
               <ul className="space-y-2 list-disc pl-5">
                 {reqs.map((req: string, idx: number) => (
                   <li key={idx}>{req}</li>
