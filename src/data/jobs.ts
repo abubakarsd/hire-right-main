@@ -570,6 +570,6 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job21.jpg", // <-- Added image path
+    image: "/public/img/jobs/job21.jpg",
   },
 ];
