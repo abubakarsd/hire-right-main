@@ -18,36 +18,22 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
   const toggle = onToggle ?? (() => setInternalOpen((v) => !v));
 
   // use requirements if present, otherwise fall back to duties to avoid crashes
-  const reqs = 'requirements' in job && Array.isArray(job.requirements)
-    ? job.requirements
-    : job.duties ?? [];
+  const reqs =
+    "requirements" in job && Array.isArray(job.requirements)
+      ? job.requirements
+      : job.duties ?? [];
 
   return (
     <article className="rounded-2xl bg-[#06060608] font-manrope shadow-xl ring-1 ring-gray-100 p-5 md:p-6">
-      {/* This is the main flex container. 'md:items-stretch' is crucial here 
-        to make sure child items (image container and details container) 
-        stretch to the height of the tallest sibling (the details).
-      */}
       <div className="flex flex-col md:flex-row md:items-stretch gap-6">
-
-        {/* LEFT SIDE: Job Image
-          - md:w-48: Sets the fixed width for the image container.
-          - md:flex-shrink-0: Prevents the image from shrinking.
-          - h-full: Makes the container take the full height of the parent flex item.
-        */}
-        {/* LEFT SIDE: Job Image - Fixed width and uses h-full on md screens */}
-        <div className="md:w-48 md:flex-shrink-0 w-full md:h-full"> {/* md:h-full is key for stretching */}
-          
-          {/* This wrapper must be relative and define its height. */}
-          <div className="relative w-full h-48 md:h-full rounded-xl overflow-hidden">
-            {/* h-48 is added for a reliable height on mobile. md:h-full will override it on desktop. */}
-            
+        {/* LEFT SIDE: Job Image - Full height cover */}
+        <div className="md:w-64 md:h-full md:flex-shrink-0 w-full">
+          <div className="relative w-full h-full rounded-xl overflow-hidden">
             <Image
               src={job.image}
               alt={`${job.role} graphic`}
-              layout="fill"
-              objectFit="cover" 
-              // Removed the class here since layout="fill" makes it an absolute child
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>
@@ -82,13 +68,19 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
               <Image src={job.locate} alt="Location" width={16} height={16} />
               {job.location}
             </span>
-            <span className="rounded-md bg-[#F2793380] text-[#003780] px-2 py-[2px] font-manrope">{job.mode}</span>
-            <span className="rounded-md bg-[#F2793380] text-[#003780] px-2 py-[2px] font-manrope">{job.type}</span>
+            <span className="rounded-md bg-[#F2793380] text-[#003780] px-2 py-[2px] font-manrope">
+              {job.mode}
+            </span>
+            <span className="rounded-md bg-[#F2793380] text-[#003780] px-2 py-[2px] font-manrope">
+              {job.type}
+            </span>
           </div>
 
           {/* Salary */}
           <div className="mt-2 text-[14px] text-[#060606] font-[500] font-manrope">
-            <span className="font-[500] text-[16px] text-[#003780] font-manrope">Salary: </span>
+            <span className="font-[500] text-[16px] text-[#003780] font-manrope">
+              Salary:{" "}
+            </span>
             {job.salary}
           </div>
 
@@ -119,11 +111,15 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
           {/* Collapsible (smooth) */}
           <div
             className={`transition-[grid-template-rows,opacity,margin] duration-300 ease-in-out grid ${
-              open ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
+              open
+                ? "grid-rows-[1fr] opacity-100 mt-4"
+                : "grid-rows-[0fr] opacity-0"
             }`}
           >
             <div className="overflow-hidden bg-[#003780] rounded-3xl shadow-2xl p-4 text-white font-manrope">
-              <div className="font-semibold text-orange-300 mb-2 text-lg">Requirements:</div>
+              <div className="font-semibold text-orange-300 mb-2 text-lg">
+                Requirements:
+              </div>
               <ul className="space-y-2 list-disc pl-5">
                 {reqs.map((req: string, idx: number) => (
                   <li key={idx}>{req}</li>
