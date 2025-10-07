@@ -145,10 +145,30 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
 
   return (
     <article className="rounded-2xl bg-[#06060608] font-manrope shadow-xl ring-1 ring-gray-100 p-5 md:p-6">
-      <div className="flex flex-col-reverse md:flex-row md:items-start gap-6">
+      {/*
+        FLEX CONTAINER: Sets up the two-column layout on medium screens (md:flex-row).
+        On mobile (default), it stacks the image on top of the details.
+      */}
+      <div className="flex flex-col md:flex-row md:items-start gap-6">
+        
+        {/* LEFT SIDE: Job Image
+          This container now comes FIRST in the structure.
+        */}
+        <div className="md:w-56 md:flex-shrink-0 w-full">
+          <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src={job.image}
+              alt={`${job.role} graphic`}
+              layout="fill"
+              objectFit="cover"
+              className="hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        </div>
+
         {/*
-          LEFT SIDE: Job Details
-          This container holds all the existing job information.
+          RIGHT SIDE: Job Details
+          This container holds all the job information and takes up the remaining space (flex-grow).
         */}
         <div className="flex-grow">
           {/* Role + Apply */}
@@ -235,23 +255,6 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
               <Image src={job.calendar} alt="Posted date" width={16} height={16} />
               {job.posted}
             </span>
-          </div>
-        </div>
-
-        {/* RIGHT SIDE: Job Image
-          This container shows the image and is placed first in the flex order on desktop (md:flex-row) 
-          but last on mobile (flex-col-reverse) to ensure it appears on top.
-        */}
-        <div className="md:w-56 md:flex-shrink-0 w-full">
-          {/* Using a square aspect ratio and object-cover to make the image look good */}
-          <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-lg">
-            <Image
-              src={job.image}
-              alt={`${job.role} graphic`}
-              layout="fill"
-              objectFit="cover"
-              className="hover:scale-105 transition-transform duration-300"
-            />
           </div>
         </div>
       </div>
