@@ -17,7 +17,7 @@ export type Job = {
   locate:string
   calendar:string
   locatebar:string
-  image: string; // <-- New field for job image (e.g., img/jobs/job1.jpg)
+  image: string; // <-- New field for job image (e.g., /img/jobs/job1.jpeg)
 };
 
 
@@ -47,7 +47,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job1.jpg", // <-- Updated image path
+    image: "/img/jobs/job1.jpeg", // <-- Updated image path
   },
   {
     id: "j-2",
@@ -74,7 +74,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job2.jpg", // <-- Updated image path
+    image: "/img/jobs/job2.jpeg", // <-- Updated image path
   },
   {
     id: "j-3",
@@ -102,7 +102,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/location.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job3.jpg", // <-- Updated image path
+    image: "/img/jobs/job3.jpeg", // <-- Updated image path
   },
    {
     id: "j-4",
@@ -127,7 +127,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job4.jpg", // <-- Updated image path
+    image: "/img/jobs/job4.jpeg", // <-- Updated image path
   },
    {
     id: "j-5",
@@ -155,7 +155,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job5.jpg", // <-- Updated image path
+    image: "/img/jobs/job5.jpeg", // <-- Updated image path
   },
     {
     id: "j-6",
@@ -181,7 +181,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job6.jpg", // <-- Updated image path
+    image: "/img/jobs/job6.jpeg", // <-- Updated image path
   },
       {
     id: "j-7",
@@ -207,7 +207,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job7.jpg", // <-- Updated image path
+    image: "/img/jobs/job7.jpeg", // <-- Updated image path
   },
       {
     id: "j-8",
@@ -233,7 +233,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job8.jpg", // <-- Updated image path
+    image: "/img/jobs/job8.jpeg", // <-- Updated image path
   },
       {
     id: "j-9",
@@ -259,7 +259,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job9.jpg", // <-- Updated image path
+    image: "/img/jobs/job9.jpeg", // <-- Updated image path
   },
       {
     id: "j-10",
@@ -285,7 +285,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job10.jpg", // <-- Updated image path
+    image: "/img/jobs/job10.jpeg", // <-- Updated image path
   },
       {
     id: "j-11",
@@ -309,7 +309,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job11.jpg", // <-- Updated image path
+    image: "/img/jobs/job11.jpeg", // <-- Updated image path
   },
       {
     id: "j-12",
@@ -335,7 +335,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job12.jpg", // <-- Updated image path
+    image: "/img/jobs/job12.jpeg", // <-- Updated image path
   },
       {
     id: "j-13",
@@ -361,7 +361,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job13.jpg", // <-- Updated image path
+    image: "/img/jobs/job13.jpeg", // <-- Updated image path
   },
       {
     id: "j-14",
@@ -387,7 +387,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job14.jpg", // <-- Updated image path
+    image: "/img/jobs/job14.jpeg", // <-- Updated image path
   },
       {
     id: "j-15",
@@ -413,7 +413,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job15.jpg", // <-- Updated image path
+    image: "/img/jobs/job15.jpeg", // <-- Updated image path
   },
   // --- ADDED DUMMY JOBS TO REACH 21 ENTRIES ---
   {
@@ -440,7 +440,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job16.jpg", // <-- Added image path
+    image: "/img/jobs/job16.jpeg", // <-- Added image path
   },
   {
     id: "j-17",
@@ -466,7 +466,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job17.jpg", // <-- Added image path
+    image: "/img/jobs/job17.jpeg", // <-- Added image path
   },
   {
     id: "j-18",
@@ -492,7 +492,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job18.jpg", // <-- Added image path
+    image: "/img/jobs/job18.jpeg", // <-- Added image path
   },
   {
     id: "j-19",
@@ -518,7 +518,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job19.jpg", // <-- Added image path
+    image: "/img/jobs/job19.jpeg", // <-- Added image path
   },
   {
     id: "j-20",
@@ -544,7 +544,7 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "img/jobs/job20.jpg", // <-- Added image path
+    image: "/img/jobs/job20.jpeg", // <-- Added image path
   },
   {
     id: "j-21",
@@ -570,6 +570,6 @@ export const jobs: Job[] = [
     calendar:"/jobopening/calendar.png",
     locatebar:"/jobopening/locationr.png",
     link:"https://bit/hirerightrecruitment",
-    image: "/img/jobs/job21.jpeg",
+    image: "//img/jobs/job21.jpeg",
   },
 ];
