@@ -35,17 +35,19 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
           - md:flex-shrink-0: Prevents the image from shrinking.
           - h-full: Makes the container take the full height of the parent flex item.
         */}
-        <div className="md:w-48 md:flex-shrink-0 w-full h-full"> 
-          <div className="relative w-full h-full rounded-xl overflow-hidden">
-            {/* h-full is used here instead of aspect-square 
-              to make the image container stretch vertically.
-            */}
+        {/* LEFT SIDE: Job Image - Fixed width and uses h-full on md screens */}
+        <div className="md:w-48 md:flex-shrink-0 w-full md:h-full"> {/* md:h-full is key for stretching */}
+          
+          {/* This wrapper must be relative and define its height. */}
+          <div className="relative w-full h-48 md:h-full rounded-xl overflow-hidden">
+            {/* h-48 is added for a reliable height on mobile. md:h-full will override it on desktop. */}
+            
             <Image
               src={job.image}
               alt={`${job.role} graphic`}
               layout="fill"
-              objectFit="cover" // Use 'cover' to fill the container without distortion
-              className="hover:scale-105 transition-transform duration-300"
+              objectFit="cover" 
+              // Removed the class here since layout="fill" makes it an absolute child
             />
           </div>
         </div>
