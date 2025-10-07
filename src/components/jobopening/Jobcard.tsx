@@ -145,17 +145,11 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
 
   return (
     <article className="rounded-2xl bg-[#06060608] font-manrope shadow-xl ring-1 ring-gray-100 p-5 md:p-6">
-      {/*
-        FLEX CONTAINER: Sets up the two-column layout on medium screens (md:flex-row).
-        On mobile (default), it stacks the image on top of the details.
-      */}
       <div className="flex flex-col md:flex-row md:items-start gap-6">
-        
-        {/* LEFT SIDE: Job Image
-          This container now comes FIRST in the structure.
-        */}
-        <div className="md:w-56 md:flex-shrink-0 w-full">
-          <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-lg">
+
+        {/* LEFT SIDE: Job Image - No shadow, fixed width on md screens */}
+        <div className="md:w-48 md:flex-shrink-0 w-full"> {/* Adjusted width to md:w-48, removed shadow */}
+          <div className="relative w-full aspect-square rounded-xl overflow-hidden"> {/* Removed shadow-lg from here */}
             <Image
               src={job.image}
               alt={`${job.role} graphic`}
@@ -166,10 +160,7 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
           </div>
         </div>
 
-        {/*
-          RIGHT SIDE: Job Details
-          This container holds all the job information and takes up the remaining space (flex-grow).
-        */}
+        {/* RIGHT SIDE: Job Details - Fills remaining space */}
         <div className="flex-grow">
           {/* Role + Apply */}
           <div className="flex items-start justify-between gap-3 mt-[20px] font-manrope">
