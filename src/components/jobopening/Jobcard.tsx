@@ -4,47 +4,44 @@
 // import Button from "@/components/common/Button";
 // import type { Job } from "@/data/jobs";
 
-// const JobCard = ({ job }: { job: Job }) => {
-//   const [showRequirements, setShowRequirements] = useState(false);
+// type Props = {
+//   job: Job;
+//   /** Optional: when provided by parent, the card is controlled */
+//   isOpen?: boolean;
+//   onToggle?: () => void;
+// };
+
+
+
+// const JobCard = ({ job, isOpen, onToggle }: Props) => {
+//   // fallback local state if parent doesn't control it
+//   const [internalOpen, setInternalOpen] = useState(false);
+//   const open = isOpen ?? internalOpen;
+//   const toggle = onToggle ?? (() => setInternalOpen((v) => !v));
+
+//   // use requirements if present, otherwise fall back to duties to avoid crashes
+//   const reqs = 'requirements' in job && Array.isArray(job.requirements)
+//     ? job.requirements
+//     : job.duties ?? [];
+
+    
 
 //   return (
 //     <article className="rounded-2xl bg-[#06060608] font-manrope shadow-xl ring-1 ring-gray-100 p-5 md:p-6">
-//       {/* Top: logo + company + apply */}
-//       <div className="">
-//         <div className="flex items-center gap-2">
-//           {/* <div className="h-9 w-9 rounded-full bg-white ring-1 ring-gray-200 flex items-center justify-center overflow-hidden">
-//             {job.logo && (
-//               <Image
-//                 src={job.logo}
-//                 alt={`${job.company} logo`}
-//                 width={28}
-//                 height={28}
-//                 className="object-contain"
-//               />
-//             )}
-//           </div>
-//           <div className="text-[16px] font-semibold text-slate-800">
-//             {job.company}
-//           </div> */}
-//         </div>
-       
-//       </div>
-
-//       {/* Role */}
+//       {/* Role + Apply */}
 //       <div className="flex items-start justify-between gap-3 mt-[20px] font-manrope">
-//       <div className="mt-2 text-[14px] text-[#060606] font-[500]">
-//         <span className="font-[500] text-[20px] text-[#003780]">Role: </span>
-//         {job.role}
-//       </div>
-//  <Button
+//         <div className="mt-2 text-[14px] text-[#060606] font-[500]">
+//           <span className="font-[500] text-[20px] text-[#003780]">Role: </span>
+//           {job.role}
+//         </div>
+//         <Button
 //           variant="primary"
-//           className="px-5 py-2 text-sm mt-"
+//           className="px-5 py-2 text-sm"
 //           arrow
 //           href="https://bit.ly/hirerightrecruitment"
 //         >
 //           Apply
 //         </Button>
-
 //       </div>
 
 //       {/* About */}
@@ -53,7 +50,7 @@
 //         {job.about}
 //       </div>
 
-//       {/* Location row */}
+//       {/* Meta */}
 //       <div className="mt-3 flex flex-wrap items-center gap-3 text-[13px] text-slate-700">
 //         <span className="inline-flex items-center gap-2">
 //           <Image src={job.locate} alt="Location" width={16} height={16} />
@@ -81,40 +78,34 @@
 //           </span>
 //         ))}
 //       </div>
-// {/* See requirements button */}
-// <div className="mt-2 font-manrope">
-//   <button
-//     className="text-orange-500 underline font-medium text-sm cursor-pointer"
-//     onClick={() => setShowRequirements((prev) => !prev)}
-//   >
-//     {showRequirements ? "Hide requirements" : "See requirements"}
-//   </button>
-// </div>
 
-// {/* Smooth transition for requirements */}
-// <div
-//   className={`transition-all duration-300 ease-in-out overflow-hidden ${
-//     showRequirements ? "max-h-[500px] opacity-100 mt-4" : "max-h-0 opacity-0"
-//   } bg-[#003780] rounded-3xl shadow-2xl p-4 text-white font-manrope`}
-// >
-//   {showRequirements && (
-//     <>
-//       <div className="font-semibold text-orange-300 mb-2 text-lg">Requirements:</div>
-//       <ul className="space-y-2 list-disc pl-5">
-//         {job.requirements.map((req, idx) => (
-//           <li key={idx}>{req}</li>
-//         ))}
-//       </ul>
-//       <button
-//         className="mt-4 text-white underline font-medium text-sm cursor-pointer"
-//         onClick={() => setShowRequirements(false)}
+//       {/* Toggle */}
+//       <div className="mt-2 font-manrope">
+//         <button
+//           type="button"
+//           className="text-orange-500 underline font-medium text-sm cursor-pointer"
+//           onClick={toggle}
+//         >
+//           {open ? "Hide requirements" : "See requirements"}
+//         </button>
+//       </div>
+
+//       {/* Collapsible (smooth) */}
+//       <div
+//         className={`transition-[grid-template-rows,opacity,margin] duration-300 ease-in-out grid ${
+//           open ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
+//         }`}
 //       >
-//         Hide
-//       </button>
-//     </>
-//   )}
-// </div>
-    
+//         <div className="overflow-hidden bg-[#003780] rounded-3xl shadow-2xl p-4 text-white font-manrope">
+//           <div className="font-semibold text-orange-300 mb-2 text-lg">Requirements:</div>
+//           <ul className="space-y-2 list-disc pl-5">
+//             {reqs.map((req: string, idx: number) => (
+//               <li key={idx}>{req}</li>
+//             ))}
+//           </ul>
+//         </div>
+//       </div>
+
 //       {/* Posted date */}
 //       <div className="mt-3 flex justify-end text-[12px] text-slate-500 font-manrope">
 //         <span className="inline-flex items-center gap-2">
@@ -127,10 +118,6 @@
 // };
 
 // export default JobCard;
-
-
-
-
 
 "use client";
 import { useState } from "react";
@@ -145,8 +132,6 @@ type Props = {
   onToggle?: () => void;
 };
 
-
-
 const JobCard = ({ job, isOpen, onToggle }: Props) => {
   // fallback local state if parent doesn't control it
   const [internalOpen, setInternalOpen] = useState(false);
@@ -158,98 +143,120 @@ const JobCard = ({ job, isOpen, onToggle }: Props) => {
     ? job.requirements
     : job.duties ?? [];
 
-    
-
   return (
     <article className="rounded-2xl bg-[#06060608] font-manrope shadow-xl ring-1 ring-gray-100 p-5 md:p-6">
-      {/* Role + Apply */}
-      <div className="flex items-start justify-between gap-3 mt-[20px] font-manrope">
-        <div className="mt-2 text-[14px] text-[#060606] font-[500]">
-          <span className="font-[500] text-[20px] text-[#003780]">Role: </span>
-          {job.role}
-        </div>
-        <Button
-          variant="primary"
-          className="px-5 py-2 text-sm"
-          arrow
-          href="https://bit.ly/hirerightrecruitment"
-        >
-          Apply
-        </Button>
-      </div>
+      <div className="flex flex-col-reverse md:flex-row md:items-start gap-6">
+        {/*
+          LEFT SIDE: Job Details
+          This container holds all the existing job information.
+        */}
+        <div className="flex-grow">
+          {/* Role + Apply */}
+          <div className="flex items-start justify-between gap-3 mt-[20px] font-manrope">
+            <div className="mt-2 text-[14px] text-[#060606] font-[500]">
+              <span className="font-[500] text-[20px] text-[#003780]">Role: </span>
+              {job.role}
+            </div>
+            <Button
+              variant="primary"
+              className="px-5 py-2 text-sm"
+              arrow
+              href="https://bit.ly/hirerightrecruitment"
+            >
+              Apply
+            </Button>
+          </div>
 
-      {/* About */}
-      <div className="mt-2 text-[#060606] font-manrope">
-        <span className="font-semibold text-[16px] text-[#1E3A8A]">About role: </span>
-        {job.about}
-      </div>
+          {/* About */}
+          <div className="mt-2 text-[#060606] font-manrope">
+            <span className="font-semibold text-[16px] text-[#1E3A8A]">About role: </span>
+            {job.about}
+          </div>
 
-      {/* Meta */}
-      <div className="mt-3 flex flex-wrap items-center gap-3 text-[13px] text-slate-700">
-        <span className="inline-flex items-center gap-2">
-          <Image src={job.locate} alt="Location" width={16} height={16} />
-          {job.location}
-        </span>
-        <span className="rounded-md bg-[#F2793380] text-[#003780] px-2 py-[2px] font-manrope">{job.mode}</span>
-        <span className="rounded-md bg-[#F2793380] text-[#003780] px-2 py-[2px] font-manrope">{job.type}</span>
-      </div>
+          {/* Meta */}
+          <div className="mt-3 flex flex-wrap items-center gap-3 text-[13px] text-slate-700">
+            <span className="inline-flex items-center gap-2">
+              <Image src={job.locate} alt="Location" width={16} height={16} />
+              {job.location}
+            </span>
+            <span className="rounded-md bg-[#F2793380] text-[#003780] px-2 py-[2px] font-manrope">{job.mode}</span>
+            <span className="rounded-md bg-[#F2793380] text-[#003780] px-2 py-[2px] font-manrope">{job.type}</span>
+          </div>
 
-      {/* Salary */}
-      <div className="mt-2 text-[14px] text-[#060606] font-[500] font-manrope">
-        <span className="font-[500] text-[16px] text-[#003780] font-manrope">Salary: </span>
-        {job.salary}
-      </div>
+          {/* Salary */}
+          <div className="mt-2 text-[14px] text-[#060606] font-[500] font-manrope">
+            <span className="font-[500] text-[16px] text-[#003780] font-manrope">Salary: </span>
+            {job.salary}
+          </div>
 
-      {/* Duties */}
-      <div className="mt-2 flex flex-wrap gap-2 font-manrope">
-        <span className="font-[500] text-[16px] text-[#003780]">Duties: </span>
-        {job.duties.map((t, i) => (
-          <span
-            key={`${job.id}-duty-${i}`}
-            className="rounded-md bg-[#F2793380] text-[#003780] px-2 py-[2px] font-manrope text-[12px] font-normal"
-          >
-            {t}
-          </span>
-        ))}
-      </div>
-
-      {/* Toggle */}
-      <div className="mt-2 font-manrope">
-        <button
-          type="button"
-          className="text-orange-500 underline font-medium text-sm cursor-pointer"
-          onClick={toggle}
-        >
-          {open ? "Hide requirements" : "See requirements"}
-        </button>
-      </div>
-
-      {/* Collapsible (smooth) */}
-      <div
-        className={`transition-[grid-template-rows,opacity,margin] duration-300 ease-in-out grid ${
-          open ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
-        }`}
-      >
-        <div className="overflow-hidden bg-[#003780] rounded-3xl shadow-2xl p-4 text-white font-manrope">
-          <div className="font-semibold text-orange-300 mb-2 text-lg">Requirements:</div>
-          <ul className="space-y-2 list-disc pl-5">
-            {reqs.map((req: string, idx: number) => (
-              <li key={idx}>{req}</li>
+          {/* Duties */}
+          <div className="mt-2 flex flex-wrap gap-2 font-manrope">
+            <span className="font-[500] text-[16px] text-[#003780]">Duties: </span>
+            {job.duties.map((t, i) => (
+              <span
+                key={`${job.id}-duty-${i}`}
+                className="rounded-md bg-[#F2793380] text-[#003780] px-2 py-[2px] font-manrope text-[12px] font-normal"
+              >
+                {t}
+              </span>
             ))}
-          </ul>
-        </div>
-      </div>
+          </div>
 
-      {/* Posted date */}
-      <div className="mt-3 flex justify-end text-[12px] text-slate-500 font-manrope">
-        <span className="inline-flex items-center gap-2">
-          <Image src={job.calendar} alt="Posted date" width={16} height={16} />
-          {job.posted}
-        </span>
+          {/* Toggle */}
+          <div className="mt-2 font-manrope">
+            <button
+              type="button"
+              className="text-orange-500 underline font-medium text-sm cursor-pointer"
+              onClick={toggle}
+            >
+              {open ? "Hide requirements" : "See requirements"}
+            </button>
+          </div>
+
+          {/* Collapsible (smooth) */}
+          <div
+            className={`transition-[grid-template-rows,opacity,margin] duration-300 ease-in-out grid ${
+              open ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
+            }`}
+          >
+            <div className="overflow-hidden bg-[#003780] rounded-3xl shadow-2xl p-4 text-white font-manrope">
+              <div className="font-semibold text-orange-300 mb-2 text-lg">Requirements:</div>
+              <ul className="space-y-2 list-disc pl-5">
+                {reqs.map((req: string, idx: number) => (
+                  <li key={idx}>{req}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Posted date */}
+          <div className="mt-3 flex justify-end text-[12px] text-slate-500 font-manrope">
+            <span className="inline-flex items-center gap-2">
+              <Image src={job.calendar} alt="Posted date" width={16} height={16} />
+              {job.posted}
+            </span>
+          </div>
+        </div>
+
+        {/* RIGHT SIDE: Job Image
+          This container shows the image and is placed first in the flex order on desktop (md:flex-row) 
+          but last on mobile (flex-col-reverse) to ensure it appears on top.
+        */}
+        <div className="md:w-56 md:flex-shrink-0 w-full">
+          {/* Using a square aspect ratio and object-cover to make the image look good */}
+          <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-lg">
+            <Image
+              src={job.image}
+              alt={`${job.role} graphic`}
+              layout="fill"
+              objectFit="cover"
+              className="hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        </div>
       </div>
     </article>
   );
 };
 
 export default JobCard;
-
