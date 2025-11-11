@@ -124,8 +124,6 @@ function page() {
         gradientOn='second'
         subtitle="Browse through the number of services we offer and discover tailored 
            solutions made perfectly for your company."
-        buttonText="Let's talk"
-        buttonLink="/lets-talk"
       />
     </div>
   )

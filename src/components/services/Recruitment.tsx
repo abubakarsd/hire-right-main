@@ -76,7 +76,7 @@ export default function Recruitment() {
         <div className="w-full lg:w-auto flex flex-col items-center lg:items-end sm:mb-14 space-y-12">
           {left.map((item) => (
             <div key={item.title} className="w-full max-w-[500px] ">
-              <ServiceCard {...item} />
+              <ServiceCard {...item} showCTA={false} />
             </div>
           ))}
         </div>
@@ -92,7 +92,7 @@ export default function Recruitment() {
         <div className=" w-full lg:w-auto flex flex-col items-center lg:items-start sm:mb-14 space-y-12">
           {right.map((item) => (
             <div key={item.title} className="w-full max-w-[500px]">
-              <ServiceCard {...item} />
+              <ServiceCard {...item} showCTA={false} />
             </div>
           ))}
         </div>

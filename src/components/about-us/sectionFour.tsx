@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../common/Button";
 
 const SectionFour = () => (
   <section className="h-auto w-full mt-15">
@@ -127,16 +126,7 @@ const SectionFour = () => (
       </div>
     </div>
 
-    <div className="flex items-center justify-center mt-20">
-      <Button
-        variant="secondary"
-        className="px-8 py-4 text-lg rounded-2xl  "
-        href="/lets-talk"
-        arrow
-      >
-        Learn more
-      </Button>
-    </div>
+    {/* Learn more button removed per design request */}
   </section>
 );
 

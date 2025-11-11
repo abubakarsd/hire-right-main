@@ -8,7 +8,6 @@ const Footer = () => {
 
   const navigationLinks = [
     { label: "Home", href: "/" },
-    { label: "Contact Us", href: "/lets-talk" },
     { label: "Newsroom", href: "/newsroom" },
     { label: "Blog", href: "/blogs" },
   ];

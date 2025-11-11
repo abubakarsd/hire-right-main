@@ -510,11 +510,24 @@ const TalentForm = () => {
           style={{ background: "linear-gradient(45deg, #003780, #f27933)" }}
         >
           <div className="bg-white rounded-lg p-2">
-            <input
+            <select
               className="w-full h-[60px] md:w-[800px] md:h-[90px] lg:w-[1283px] lg:h-[116px] px-4 bg-transparent focus:outline-none placeholder-[#060606] text-[#060606] placeholder:font-Manrope placeholder:text-[15px] placeholder:font-medium text-[24px]"
-              type="text"
-              placeholder="-Select which of these skills best describes you- * "
-            />
+              defaultValue=""
+              aria-label="Select skills"
+            >
+              <option value="" disabled>
+                - Select which of these skills best describes you -
+              </option>
+              <option value="engineering">Engineering</option>
+              <option value="marketing">Marketing</option>
+              <option value="sales">Sales</option>
+              <option value="operations">Operations</option>
+              <option value="finance">Finance</option>
+              <option value="hr">Human Resources</option>
+              <option value="design">Design</option>
+              <option value="product">Product</option>
+              <option value="other">Other</option>
+            </select>
           </div>
         </div>
 

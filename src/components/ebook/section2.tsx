@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Button from "../common/Button";
-import { Calendar } from "lucide-react";
+// Calendar removed — dates hidden in listing
 const ebooks = [
   {
     title: "RED FLAG #1",
@@ -8,7 +8,6 @@ const ebooks = [
     description:
       "Job hoping is when someone frequently switches jobs,Often staying in each role for a short period,Like a few months or a year,Before moving to another job.",
     image: "/img/blog/b11.svg",
-    date: "27/07/2025",
     buttonText: "Read more...",
     buttonLink: "/ebooks/talents-remote-jobs",
     readTime: "5mins",
@@ -19,7 +18,6 @@ const ebooks = [
     description:
       "Another red flag that can be spotted easily through a resume is a varied job history.Over the last 2 years have they held numerous unrelated roles ?",
     image: "/img/blog/b14.svg",
-    date: "27/07/2025",
     buttonText: "Read more...",
     buttonLink: "/ebooks/hiring-managers-tech-talent",
     readTime: "5mins",
@@ -30,7 +28,6 @@ const ebooks = [
     description:
       "This is one of the trickest red flags to spot.Many candidates impress interviewers with there polished communication skills and confidence,Even when they lack required expertise for the job.",
     image: "/img/blog/b12.svg",
-    date: "27/07/2025",
     buttonText: "Read more...",
     buttonLink: "/ebooks/hiring-managers-future-ready",
     readTime: "5mins",
@@ -44,11 +41,9 @@ type EbookCardProps = {
   subtitle: string;
   description: string;
   image: string;
-  date: string;
   buttonText: string;
   buttonLink: string;
   readTime: string;
-  logo: string;
 };
 
 export  function EbookCard({
@@ -56,11 +51,9 @@ export  function EbookCard({
   subtitle,
   description,
   image,
-  date,
   buttonText,
   buttonLink,
   readTime,
-  logo,
 }: EbookCardProps) {
   return (
     <div className="flex  flex-col sm:flex-row max-w-[1280px] bg-[rgba(6, 6, 6, 0.03)] rounded-2xl shadow-sm p-4 mb-8 items-start sm:items-center gap-4 sm:gap-6 border border-gray-100">
@@ -103,10 +96,7 @@ export  function EbookCard({
           >
             {buttonText}
           </a>
-          <div className="flex items-center gap-1 font-manrope text-[#060606] text-xs sm:text-[12px]">
-            <Calendar className="w-4 h-4" />
-            <span>{date}</span>
-          </div>
+          {/* date removed from ebook listing per request */}
         </div>
       </div>
     </div>
@@ -117,7 +107,7 @@ export default function EbookSection2() {
   return (
     <div className="max-w-7xl mx-auto px-4 mt-8">
       {ebooks.map((ebook, idx) => (
-        <EbookCard  logo={"/img/landing/Logo.svg"} key={idx} {...ebook} />
+        <EbookCard key={idx} {...ebook} />
       ))}
       <div className="flex justify-center mt-16">
         <Button

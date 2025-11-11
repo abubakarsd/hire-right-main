@@ -55,11 +55,6 @@ export const peopleManagement: ServiceItem[] = [
     href: "/services/lets-talk",
     Icon: HeartHandshake,
   },
-  {
-    title: "Why we stand out ",
-    description:
-      "",
-    href: "",
-    Icon: Users,
-  },
+  // Removed "Why we stand out" entry as requested
 ];
+

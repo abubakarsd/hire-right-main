@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { HeroSection, Newsletter,  } from '@/components/landing';
+import Button from '@/components/common/Button';
 import OpportunitiesSpotlight from '@/components/landing/OpportunitiesSpotlight';
 import Resources from '@/components/landing/Resources';
 import Section2 from '@/components/landing/AboutUs';
@@ -26,6 +27,11 @@ function HomePage() {
       {/* <Services /> */}
       <Resources />
       <Newsletter />
+
+      {/* Privacy Policy button (home) */}
+      <div className="w-full flex justify-center my-8">
+        <Button href="/privacy" variant="outline">Privacy Policy</Button>
+      </div>
     </div>
   );
 }

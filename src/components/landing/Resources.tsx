@@ -26,8 +26,9 @@ const resources = [
     description: 'Title: Top 3 red flags in hiring you should never ignore.',
     details: 'Avoid costly hiring mistakes and build your dream team with ease!',
     date: 'February 7, 2025',
-    buttonText: 'Explore our ebook library',
-    buttonLink: '/ebooks',
+    buttonText: 'Download ebook (PDF)',
+    // PDF should be placed in public/pdfs/top-3-red-flags.pdf
+    buttonLink: '/pdfs/top-3-red-flags.pdf',
   },
 ];
 

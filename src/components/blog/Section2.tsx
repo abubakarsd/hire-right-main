@@ -1,15 +1,16 @@
 import Image from "next/image";
+import Link from 'next/link';
 import Button from "../common/Button";
-import { Calendar } from "lucide-react";
+// Calendar removed — dates hidden in listing
 const ebooks = [
   {
     title: "Business Owners",
     subtitle: "BEFORE YOU HIRE: THE ONE QUESTION THAT CHANGES EVERYTHING.",
     description:"When businesses reach out to us to fill a role, one of the first things we ask is,Why are you hiring for this role?It might sound like a simple question  but you would be surprised how many hiring managers or business owners pause before answering.",
     image: "/img/blog/b11.svg",
-    date: "27/07/2025",
+    logo: "/img/landing/Logo.svg",
     buttonText: "Read more...",
-    buttonLink: "/ebooks/talents-remote-jobs",
+    buttonLink: "/blogs/before-you-hire",
     readTime: "5mins",
   },
   {
@@ -18,7 +19,7 @@ const ebooks = [
     description:
       "Let’s talk about the pain no one prepares you for;You went through the stress; screening, interviews, offers, negotiation. You finally found the one, the candidate that just gets it. They resume, they perform, they fit and then… they leave..",
     image: "/img/blog/b14.svg",
-    date: "27/07/2025",
+    logo: "/img/landing/Logo.svg",
     buttonText: "Read more...",
     buttonLink: "/ebooks/hiring-managers-tech-talent",
     readTime: "5mins",
@@ -29,7 +30,7 @@ const ebooks = [
     description:
       "Dear Founder, Business Leader, or People Manager,Let's talk. When most people hear “HR,” what usually comes to mind is hiring.Hiring managers, shortlisting CVs, conducting interviews, and onboarding new staff, that's it, and because of that, many businesses believe once they have filled the roles, HR is “done.” Box checked.",
     image: "/img/blog/b12.svg",
-    date: "27/07/2025",
+    logo: "/img/landing/Logo.svg",
     buttonText: "Read more...",
     buttonLink: "/ebooks/hiring-managers-future-ready",
     readTime: "5mins",
@@ -40,7 +41,7 @@ const ebooks = [
     description:
       "Dear Leaders,Let’s talk.It’s been a wild week on the internet. You’ve probably heard about the astronomer tech CEO who resigned after the viral Coldplay kiss moment with his HR head at a company retreat. Just in case you missed it, here’s the gist: company rules clearly frowned on workplace romance but when it came to top leadership, those rules… evaporated.",
     image: "/img/blog/b12.svg",
-    date: "27/07/2025",
+    logo: "/img/landing/Logo.svg",
     buttonText: "Read more...",
     buttonLink: "/ebooks/hiring-managers-future-ready",
     readTime: "5mins",
@@ -51,9 +52,9 @@ const ebooks = [
     description:
       "Let’s go back a few years when a statement was made that sent shockwaves across Nigeria “Nigerian youths are lazy” Business owners were angry, youths were angrier and  here we are, still circling around that question.So, were they right?.",
     image: "/img/blog/b12.svg",
-    date: "27/07/2025",
+    logo: "/img/landing/Logo.svg",
     buttonText: "Read more...",
-    buttonLink: "/ebooks/hiring-managers-future-ready",
+    buttonLink: "/blogs/lazy-youths",
     readTime: "5mins",
   },
   {
@@ -62,7 +63,7 @@ const ebooks = [
     description:
       "Let’s have an honest conversation.If we sat across from you right now and asked,“What is the biggest challenge you're facing with recruitment at the moment?”What would your answer be?",
     image: "/img/blog/b12.svg",
-    date: "27/07/2025",
+    logo: "/img/landing/Logo.svg",
     buttonText: "Read more...",
     buttonLink: "/ebooks/hiring-managers-future-ready",
     readTime: "5mins",
@@ -76,9 +77,8 @@ type BlogCardProps = {
   subtitle: string;
   description: string;
   image: string;
-  date: string;
   buttonText: string;
-  buttonLink: string;
+  buttonLink?: string;
   readTime: string;
   logo: string;
 };
@@ -88,9 +88,9 @@ export  function EbookCard({
   subtitle,
   description,
   image,
-  date,
+  // date removed
   buttonText,
-  buttonLink,
+  buttonLink = '/blogs',
   readTime,
   logo,
 }: BlogCardProps) {
@@ -129,16 +129,13 @@ export  function EbookCard({
         </p>
 
         <div className="flex items-center justify-between mt-2">
-          <a
-            href={buttonLink}
-            className="text-primary-orange font-space-grotesk text-sm hover:underline font-medium"
-          >
-            {buttonText}
-          </a>
-          <div className="flex items-center gap-1 font-manrope text-[#060606] text-xs sm:text-[12px]">
-            <Calendar className="w-4 h-4" />
-            <span>{date}</span>
-          </div>
+          <Link
+              href={buttonLink}
+              className="text-primary-orange font-space-grotesk text-sm hover:underline font-medium"
+            >
+              {buttonText}
+            </Link>
+          {/* date removed from blog listing per request */}
         </div>
       </div>
     </div>
@@ -149,7 +146,7 @@ export default function EbookSection2() {
   return (
     <div className="max-w-7xl mx-auto px-4 mt-8">
       {ebooks.map((ebook, idx) => (
-        <EbookCard  logo={"/img/landing/Logo.svg"} key={idx} {...ebook} />
+        <EbookCard key={idx} {...ebook} />
       ))}
       <div className="flex justify-center mt-16">
         <Button

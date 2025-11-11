@@ -61,21 +61,10 @@
 
 import ServiceCard from "./ServiceCard";
 import { peopleManagement } from "../../data/services";
-import Image from 'next/image';
 
 
 export default function PeopleManagement() {
-
-
-  const rightFeatures = [
-  "HR Operations & Compliance.",
-  "Employee Relations & Support.",
-  "Workforce Planning & Strategy.",
-  "Culture, Engagement & Retention.",
-  "On-Demand HR Leadership."
-];
   const left = [peopleManagement[0]];
-  const right = [peopleManagement[1]];
 
   return (
     <section className="mx-auto w-[92%] md:w-[88%] lg:w-[84%] py-12">
@@ -89,25 +78,10 @@ export default function PeopleManagement() {
         complexity of building one in-house.
       </p>
 
-      {/* Cards grid with diamond in the middle */}
-      <div className="mt-16 flex flex-col lg:flex-row justify-center items-center gap-15">
-        {/* Left card */}
-        <div className="w-full max-w-[500px] lg:max-w-[500px]">
-          <ServiceCard {...left[0]} />
-        </div>
-
-        {/* Diamond image, centered vertically */}
-        <div className="flex items-center justify-center h-[80px] sm:h-[1px]">
-          <Image src="/service/diamond.png" alt="Diamond" width={36} height={36} />
-        </div>
-
-        {/* Right card */}
-        <div className="w-full max-w-[500px] sm:text-[16px] lg:max-w-[500px]">
-          
-            
-              <ServiceCard {...right[0]} features={rightFeatures}  />
-            
-          
+      <div className="mt-16 flex justify-center">
+          <div className="w-full max-w-[700px]">
+          {/* Render a single featured ServiceCard without CTA */}
+          <ServiceCard {...left[0]} showCTA={false} featured={true} />
         </div>
       </div>
     </section>
